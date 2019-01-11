@@ -52,6 +52,7 @@
     const button = document.querySelector('#ripple');
     let timer;
     button.addEventListener('click', (evt) => {
+      button.className = 'animating';
       const client = button.getBoundingClientRect();
 
       const x = evt.clientX - client.left;
@@ -64,7 +65,8 @@
       timer = setInterval(() => {
         button.setAttribute('style', `--ripple-x: ${x}; --ripple-y: ${y}; --animation-tick: ${tick+=10}`);
         if (tick > 1000) {
-          clearInterval(timer)
+          clearInterval(timer);
+          button.className = '';
         }
       }, 10)
     })
