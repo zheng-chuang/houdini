@@ -8,12 +8,12 @@ registerPaint('ripple', class {
       '--ripple-y'
     ];
   }
-  paint(ctx, geom, properties) {
-    const backgroundColor = properties.get('background-color').toString();
-    const rippleColor = properties.get('--ripple-color').toString();
-    const rippleX = parseFloat(properties.get('--ripple-x').toString());
-    const rippleY = parseFloat(properties.get('--ripple-y').toString());
-    let animationTick = parseFloat(properties.get('--animation-tick').toString());
+  paint(ctx, size, styleMap) {
+    const backgroundColor = styleMap.get('background-color').toString();
+    const rippleColor = styleMap.get('--ripple-color').toString();
+    const rippleX = parseFloat(styleMap.get('--ripple-x').toString());
+    const rippleY = parseFloat(styleMap.get('--ripple-y').toString());
+    let animationTick = parseFloat(styleMap.get('--animation-tick').toString());
     if (animationTick < 0) {
       animationTick = 0;
     }
@@ -22,11 +22,11 @@ registerPaint('ripple', class {
     }
 
     ctx.fillStyle = backgroundColor;
-    ctx.fillRect(0, 0, geom.width, geom.height);
+    ctx.fillRect(0, 0, size.width, size.height);
 
     ctx.fillStyle = rippleColor;
     ctx.globalAlpha = 1 - animationTick / 1000;
-    ctx.arc(rippleX, rippleY, geom.width * animationTick / 1000, 0, 2 * Math.PI);
+    ctx.arc(rippleX, rippleY, size.width * animationTick / 1000, 0, 2 * Math.PI);
     ctx.fill();
   }
 });
