@@ -8,12 +8,12 @@ registerPaint('ripple', class {
       '--ripple-y'
     ];
   }
-  paint(ctx, size, styleMap) {
-    const backgroundColor = styleMap.get('background-color').toString();
-    const rippleColor = styleMap.get('--ripple-color').toString();
-    const rippleX = parseFloat(styleMap.get('--ripple-x').toString());
-    const rippleY = parseFloat(styleMap.get('--ripple-y').toString());
-    let animationTick = parseFloat(styleMap.get('--animation-tick').toString());
+  paint(context, size, properties) {
+    const backgroundColor = properties.get('background-color').toString();
+    const rippleColor = properties.get('--ripple-color').toString();
+    const rippleX = parseFloat(properties.get('--ripple-x').toString());
+    const rippleY = parseFloat(properties.get('--ripple-y').toString());
+    let animationTick = parseFloat(properties.get('--animation-tick').toString());
     if (animationTick < 0) {
       animationTick = 0;
     }
@@ -21,12 +21,12 @@ registerPaint('ripple', class {
       animationTick = 1000;
     }
 
-    ctx.fillStyle = backgroundColor;
-    ctx.fillRect(0, 0, size.width, size.height);
+    context.fillStyle = backgroundColor;
+    context.fillRect(0, 0, size.width, size.height);
 
-    ctx.fillStyle = rippleColor;
-    ctx.globalAlpha = 1 - animationTick / 1000;
-    ctx.arc(rippleX, rippleY, size.width * animationTick / 1000, 0, 2 * Math.PI);
-    ctx.fill();
+    context.fillStyle = rippleColor;
+    context.globalAlpha = 1 - animationTick / 1000;
+    context.arc(rippleX, rippleY, size.width * animationTick / 1000, 0, 2 * Math.PI);
+    context.fill();
   }
 });
