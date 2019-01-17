@@ -142,7 +142,7 @@ context其实就是canvas的画笔，size是包含你可以绘画的区域的�
 
 ```
 
-注意在 `style`标签中`background: paint(ripple), var(--gradient);`这一句。
+注意在`style`标签中`background: paint(ripple), var(--gradient);`这一句。
 
 每次style的改变都会调用paint()然后绘制我们定义的ripple
 
