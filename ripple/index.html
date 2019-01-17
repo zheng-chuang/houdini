@@ -47,7 +47,9 @@
     <button id="ripple">Click me!</button>
   </div>
   <script>
-    CSS.paintWorklet.addModule('paint.js')
+    if (window.CSS) {
+      CSS.paintWorklet.addModule('paint.js')
+    }
   </script>
   <script>
     const button = document.querySelector('#ripple');
@@ -72,8 +74,6 @@
       }, 10)
     })
   </script>
-  <style>
-  </style>
 </body>
 
 </html>
