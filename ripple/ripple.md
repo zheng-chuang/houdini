@@ -84,63 +84,63 @@ context其实就是canvas的画笔，size是包含你可以绘画的区域的宽
 
 ```html
 <style>
-    .container {
-      background: #333;
-      height: 700px;
-      display: flex;
-      align-items: center;
+  .container {
+    background: #333;
+    height: 700px;
+    display: flex;
+    align-items: center;
+  }
+
+  #ripple {
+    font-size: 3em;
+    font-weight: 200;
+    --gradient: linear-gradient(to bottom right, deeppink, orangered);
+    background: var(--gradient);
+    border: 0;
+    margin: 50px auto;
+    padding: 1rem 2rem;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, .12), 0 1px 1px 0 rgba(0, 0, 0, .24);
+    color: #fff;
+    border-radius: 5px;
+    
+  }
+
+  #ripple:focus {
+    outline: 0;
+  }
+
+  #ripple.animating {
+    background: paint(ripple), var(--gradient);
+    --ripple-x: 0;
+    --ripple-y: 0;
+    --animation-tick: 0;
+    --ripple-color: rgba(255, 255, 255, 0.5);
+  }
+</style>
+
+<script>
+  const button = document.querySelector('#ripple');
+  let timer;
+  button.addEventListener('click', (evt) => {
+    button.className = 'animating';
+    const client = button.getBoundingClientRect();
+
+    const x = evt.clientX - client.left;
+    const y = evt.clientY - client.top;
+    let tick = 0
+    button.setAttribute('style', `--ripple-x: ${x}; --ripple-y: ${y}; --animation-tick: ${tick}`);
+    if (timer) {
+      clearInterval(timer)
     }
-
-    #ripple {
-      font-size: 3em;
-      font-weight: 200;
-      --gradient: linear-gradient(to bottom right, deeppink, orangered);
-      background: var(--gradient);
-      border: 0;
-      margin: 50px auto;
-      padding: 1rem 2rem;
-      box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, .12), 0 1px 1px 0 rgba(0, 0, 0, .24);
-      color: #fff;
-      border-radius: 5px;
-      
-    }
-
-    #ripple:focus {
-      outline: 0;
-    }
-
-    #ripple.animating {
-      background: paint(ripple), var(--gradient);
-      --ripple-x: 0;
-      --ripple-y: 0;
-      --animation-tick: 0;
-      --ripple-color: rgba(255, 255, 255, 0.5);
-    }
-  </style>
-
-  <script>
-    const button = document.querySelector('#ripple');
-    let timer;
-    button.addEventListener('click', (evt) => {
-      button.className = 'animating';
-      const client = button.getBoundingClientRect();
-
-      const x = evt.clientX - client.left;
-      const y = evt.clientY - client.top;
-      let tick = 0
-      button.setAttribute('style', `--ripple-x: ${x}; --ripple-y: ${y}; --animation-tick: ${tick}`);
-      if (timer) {
-        clearInterval(timer)
+    timer = setInterval(() => {
+      button.setAttribute('style', `--ripple-x: ${x}; --ripple-y: ${y}; --animation-tick: ${tick+=10}`);
+      if (tick > 1000) {
+        clearInterval(timer);
+        button.className = '';
       }
-      timer = setInterval(() => {
-        button.setAttribute('style', `--ripple-x: ${x}; --ripple-y: ${y}; --animation-tick: ${tick+=10}`);
-        if (tick > 1000) {
-          clearInterval(timer);
-          button.className = '';
-        }
-      }, 10)
-    })
-  </script>
+    }, 10)
+  })
+</script>
 
 ```
 
