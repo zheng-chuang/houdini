@@ -102,7 +102,6 @@ context其实就是canvas的画笔，size是包含你可以绘画的区域的宽
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, .12), 0 1px 1px 0 rgba(0, 0, 0, .24);
     color: #fff;
     border-radius: 5px;
-    
   }
 
   #ripple:focus {
