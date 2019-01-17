@@ -60,11 +60,11 @@ registerPaint('ripple', class {
 
 实在是没什么好讲的,两个函数 `static get inputProperties()`和`paint(context, size, properties)`;
 
-`static get inputProperties()` 用来获取css属性(原生支持的还是你自己瞎写的都可以)
+`static get inputProperties()` 用来获取css属性(原生支持的还是你自己瞎写的都可以)
 
 `paint(context, size, properties)` 就是用来画图的东西了
 
-context其实就是canvas的画笔，size是包含你可以绘画的区域的宽度和高度，properties就是包含你在`static get inputProperties()`中要求获取的所有css变量了。
+context其实就是canvas的画笔，size是包含你可以绘画的区域的宽度和高度，properties就是包含你在`static get inputProperties()`中要求获取的所有css变量了。
 
 #### `CSS.paintWorklet.addModule(url: string)`
 
@@ -78,7 +78,7 @@ context其实就是canvas的画笔，size是包含你可以绘画的区域的�
 </script>
 ```
 
-### 使用我们定义的css module
+### 使用我们定义的css module
 
 ```html
 <style>
