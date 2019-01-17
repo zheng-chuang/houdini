@@ -6,6 +6,8 @@
 
 ### 再奉上[源码](https://github.com/zheng-chuang/houdini/tree/master/ripple)
 
+![在线预览](https://zheng-chuang.github.io/houdini/ripple/index.html)
+
 够诚意吧？那就开始搞起!!!
 
 ### 主要API
